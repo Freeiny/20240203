@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <!-- <meta content="width=device-width, initial-scale=1.0" name="viewport" /> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=no">
+    <meta property="og:title" content="인영💙동균의 결혼식에 초대합니다"/>
+    <meta property="og:description" content="24.02.03 PM 12:30">
+    <meta property="og:image" content="images/img-thumb.png">
+    <meta property="og:type" content="website"/>
+    <title>INVITATION</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    
+  </head>
+  <body>
+    
+    <div class="ly-start">
+
+        <div class="ly-contents type-userinfo">
+          <p class="txt-lg">안녕하세요,<br/>
+          받으시는 분의<br/>성함을 알고싶어요</p>
+          <div class="wrap-input mt10 txt-lg">
+            <i class="img-curser"></i>
+            <form></form>
+              <input class="data-name txt-lg" onkeyup='saveUser()' type="text">
+              <b class="data-result txt-lg"></b>
+            <form></form>
+            <span class="txt-lg">님,</span>
+          </div>
+          <a class="btn-userinfo">다음으로</a>
+        </div> 
+
+  </body>
+
+
+  <script>
+      const userBtn = document.querySelector('.btn-userinfo');
+      const input = document.querySelector('.data-name')
+      const textName = document.querySelector('.data-result')
+
+      function saveUser() {
+        const value = input.value;
+        textName.innerText = value;
+        sessionStorage.setItem('Name', value)
+        input.addEventListener('keydown', (e) => {
+          if(e.keyCode === 13){
+            sessionStorage.setItem('Name', value)
+          }
+        })
+      }
+
+      userBtn.addEventListener('click', function(){
+        const userNamedata = sessionStorage.getItem('Name')
+        console.log(userNamedata)
+          if(userNamedata === null){
+            alert('안녕하세요, 성함을 입력해주세요')
+          }else{
+            location.href = 'invitation.html';
+          }
+      })
+
+      sessionStorage.clear();
+
+      //  커서 포커스시 사라지게
+      const curserArea = document.querySelector('.wrap-input');
+      const curser = document.querySelector('.img-curser');
+      curserArea.addEventListener('click', function(){
+        curser.classList.add('hidden')
+      })
+
+
+  </script>
+
+</html>
